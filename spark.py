@@ -16,10 +16,10 @@ def index():
         #Get the image URL and check
         particle = request.args.get(PARTICLE)
         save = request.args.get(SAVE)
-        if save is 'False':
-            save = False
-        elif save is 'True':
+        if save == 'True':
             save = True
+        else:
+            save = False
         if particle:
             try:
                 return fire(particle,save)
