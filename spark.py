@@ -36,9 +36,9 @@ def fire(image_url, save):
     transform_image = gc.data.transforms.presets.imagenet.transform_eval(img)
     pred = net(transform_image)
     prob = mx.nd.softmax(pred)[0].asnumpy()
-    ind = mx.nd.topk(pred, k=5)[0].astype('int').asnumpy().tolist()
+    ind = mx.nd.topk(pred, k=10)[0].astype('int').asnumpy().tolist()
     respArray = []
-    for i in range(5):
+    for i in range(10):
         respArray.append({net.classes[ind[i]]:prob[ind[i]]})
     if(not save):
         os.remove(im_fname)
