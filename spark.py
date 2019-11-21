@@ -39,7 +39,7 @@ def fire(image_url, save):
     ind = mx.nd.topk(pred, k=10)[0].astype('int').asnumpy().tolist()
     respArray = []
     for i in range(10):
-        respArray.append({net.classes[ind[i]]:prob[ind[i]]})
+        respArray.append({"label":net.classes[ind[i]], "probability":prob[ind[i]]})
     if(not save):
         os.remove(im_fname)
     return str({PARTICLE:image_url,'flame':(respArray)})
